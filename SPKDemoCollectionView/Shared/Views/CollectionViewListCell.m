@@ -10,4 +10,8 @@
 
 @implementation CollectionViewListCell
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    self.layoutMargins = UIEdgeInsetsMake(5,5,5,5);
+}
 @end
