@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *gridButton;
 @property (weak, nonatomic) IBOutlet UIButton *listButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (assign)NSInteger selectedLayout;
+@property (strong,nonatomic)UICollectionViewLayout* selectedLayout;
 @end
 
 #define gridCellReuseID @"gridCollectionViewCell"
@@ -24,11 +24,6 @@
 
 typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     AAACollectionViewGridListSectionFirst
-};
-
-typedef NS_ENUM(NSInteger, AAACollectionViewLayoutSelected){
-    AAACollectionViewLayoutSelectedGrid,
-    AAACollectionViewLayoutSelectedList
 };
 
 @implementation AAAViewControllerGridList
@@ -49,37 +44,31 @@ typedef NS_ENUM(NSInteger, AAACollectionViewLayoutSelected){
 
 
 -(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
     //We do this to make it easy to change the margins
     self.view.layoutMargins = UIEdgeInsetsMake(0,0,0,0);
 }
 
 - (IBAction)gridButtonTapped:(UIButton *)sender {
-    self.selectedLayout = AAACollectionViewLayoutSelectedGrid;
-    
-    [self.collectionView.collectionViewLayout invalidateLayout];
-
-//Uncomment to animate changing of layout
-//    [UIView animateWithDuration:1.0 animations:^(void){
-//      [self.collectionView setCollectionViewLayout:[[AAAGridFlowLayout alloc]init] animated:YES];
-//    }];
-    
-    [self.collectionView setCollectionViewLayout:[[AAAGridFlowLayout alloc]init] animated:NO];
-    
+    self.selectedLayout = [[AAAGridFlowLayout alloc]init];
+    [self selectLayout];
     [self.collectionView reloadData];
     
 }
 - (IBAction)listButtonTapped:(UIButton *)sender {
-    self.selectedLayout = AAACollectionViewLayoutSelectedList;
-    [self.collectionView.collectionViewLayout invalidateLayout];
-
-//Uncomment to animate changing of layout
-//    [UIView animateWithDuration:1.0 animations:^(void){
-//        [self.collectionView setCollectionViewLayout:[[AAAListFlowLayout alloc]init] animated:YES];
-//    }];
-    
-    [self.collectionView setCollectionViewLayout:[[AAAListFlowLayout alloc]init] animated:NO];
-    
+    self.selectedLayout = [[AAAListFlowLayout alloc]init];;
+    [self selectLayout];
     [self.collectionView reloadData];
+}
+
+-(void)selectLayout{
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    
+    //Uncomment to animate changing of layout
+    //    [UIView animateWithDuration:1.0 animations:^(void){
+    //      [self.collectionView setCollectionViewLayout:[[AAAGridFlowLayout alloc]init] animated:YES];
+    //    }];
+    [self.collectionView setCollectionViewLayout:self.selectedLayout animated:NO];
 }
 
 
@@ -97,15 +86,18 @@ typedef NS_ENUM(NSInteger, AAACollectionViewLayoutSelected){
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell* newCell;
-    if(self.selectedLayout == AAACollectionViewLayoutSelectedGrid){
+    if([self.selectedLayout isKindOfClass:[AAAGridFlowLayout class]]){
         newCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:gridCellReuseID forIndexPath:indexPath];
         CollectionViewGridCell* gridCell = (CollectionViewGridCell*)newCell;
-        gridCell.titleLabel.text = [NSString stringWithFormat:@"Item:%ld",(long)indexPath.item];
+        gridCell.titleLabel.text = [NSString stringWithFormat:@"Item %ld",(long)indexPath.item];
     }else{
         newCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:listCellReuseID forIndexPath:indexPath];
-        CollectionViewListCell* gridCell = (CollectionViewListCell*)newCell;
-        gridCell.titleLabel.text = [NSString stringWithFormat:@"Item:%ld",(long)indexPath.item];
+        CollectionViewListCell* listCell = (CollectionViewListCell*)newCell;
+        listCell.titleLabel.text = [NSString stringWithFormat:@"Item %ld",(long)indexPath.item];
+        listCell.detailLabel.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
     }
+    
+    self.cellTemplate = newCell;
     
     return newCell;
 }
