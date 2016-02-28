@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AAAGridFlowLayout.h
 //  SPKDemoCollectionView
 //
 //  Created by Spencer Kamchee on 2/24/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface AAAGridFlowLayout : UICollectionViewFlowLayout
 
 @end
-

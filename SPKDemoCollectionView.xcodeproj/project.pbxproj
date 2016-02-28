@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		ACB60B1E1C7EA00200BC7773 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B1D1C7EA00200BC7773 /* main.m */; };
 		ACB60B211C7EA00200BC7773 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B201C7EA00200BC7773 /* AppDelegate.m */; };
-		ACB60B241C7EA00200BC7773 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B231C7EA00200BC7773 /* ViewController.m */; };
+		ACB60B241C7EA00200BC7773 /* AAAViewControllerGridList.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B231C7EA00200BC7773 /* AAAViewControllerGridList.m */; };
 		ACB60B271C7EA00200BC7773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B251C7EA00200BC7773 /* Main.storyboard */; };
 		ACB60B291C7EA00300BC7773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B281C7EA00300BC7773 /* Assets.xcassets */; };
 		ACB60B2C1C7EA00300BC7773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B2A1C7EA00300BC7773 /* LaunchScreen.storyboard */; };
+		ACB60B351C7EBB1B00BC7773 /* AAAGridFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B341C7EBB1B00BC7773 /* AAAGridFlowLayout.m */; };
+		ACB60B381C7EBB2C00BC7773 /* AAAListFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B371C7EBB2C00BC7773 /* AAAListFlowLayout.m */; };
+		ACB60B3A1C7ED1C800BC7773 /* CollectionViewGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B391C7ED1C800BC7773 /* CollectionViewGridCell.xib */; };
+		ACB60B3C1C7ED1D900BC7773 /* CollectionViewListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B3B1C7ED1D900BC7773 /* CollectionViewListCell.xib */; };
+		ACB60B3F1C7ED35600BC7773 /* CollectionViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B3E1C7ED35600BC7773 /* CollectionViewGridCell.m */; };
+		ACB60B421C7ED36200BC7773 /* CollectionViewListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B411C7ED36200BC7773 /* CollectionViewListCell.m */; };
+		ACB60B481C8016F800BC7773 /* AABViewControllerSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +27,24 @@
 		ACB60B1D1C7EA00200BC7773 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ACB60B1F1C7EA00200BC7773 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ACB60B201C7EA00200BC7773 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ACB60B221C7EA00200BC7773 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		ACB60B231C7EA00200BC7773 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ACB60B221C7EA00200BC7773 /* AAAViewControllerGridList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAAViewControllerGridList.h; sourceTree = "<group>"; };
+		ACB60B231C7EA00200BC7773 /* AAAViewControllerGridList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAAViewControllerGridList.m; sourceTree = "<group>"; };
 		ACB60B261C7EA00200BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACB60B281C7EA00300BC7773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACB60B2B1C7EA00300BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACB60B2D1C7EA00300BC7773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACB60B331C7EBB1B00BC7773 /* AAAGridFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAGridFlowLayout.h; sourceTree = "<group>"; };
+		ACB60B341C7EBB1B00BC7773 /* AAAGridFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAGridFlowLayout.m; sourceTree = "<group>"; };
+		ACB60B361C7EBB2C00BC7773 /* AAAListFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAListFlowLayout.h; sourceTree = "<group>"; };
+		ACB60B371C7EBB2C00BC7773 /* AAAListFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAListFlowLayout.m; sourceTree = "<group>"; };
+		ACB60B391C7ED1C800BC7773 /* CollectionViewGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewGridCell.xib; sourceTree = "<group>"; };
+		ACB60B3B1C7ED1D900BC7773 /* CollectionViewListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewListCell.xib; sourceTree = "<group>"; };
+		ACB60B3D1C7ED35600BC7773 /* CollectionViewGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewGridCell.h; sourceTree = "<group>"; };
+		ACB60B3E1C7ED35600BC7773 /* CollectionViewGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewGridCell.m; sourceTree = "<group>"; };
+		ACB60B401C7ED36200BC7773 /* CollectionViewListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewListCell.h; sourceTree = "<group>"; };
+		ACB60B411C7ED36200BC7773 /* CollectionViewListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewListCell.m; sourceTree = "<group>"; };
+		ACB60B461C8016F800BC7773 /* AABViewControllerSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AABViewControllerSupplementaryView.h; path = SupplementaryViews/AABViewControllerSupplementaryView.h; sourceTree = "<group>"; };
+		ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AABViewControllerSupplementaryView.m; path = SupplementaryViews/AABViewControllerSupplementaryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +77,12 @@
 		ACB60B1B1C7EA00200BC7773 /* SPKDemoCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				ACB60B491C828E3F00BC7773 /* Shared */,
+				ACB60B431C7EDB7800BC7773 /* GridList */,
+				ACB60B451C8014B500BC7773 /* SupplementaryViews */,
+				ACB60B251C7EA00200BC7773 /* Main.storyboard */,
 				ACB60B1F1C7EA00200BC7773 /* AppDelegate.h */,
 				ACB60B201C7EA00200BC7773 /* AppDelegate.m */,
-				ACB60B221C7EA00200BC7773 /* ViewController.h */,
-				ACB60B231C7EA00200BC7773 /* ViewController.m */,
-				ACB60B251C7EA00200BC7773 /* Main.storyboard */,
 				ACB60B281C7EA00300BC7773 /* Assets.xcassets */,
 				ACB60B2A1C7EA00300BC7773 /* LaunchScreen.storyboard */,
 				ACB60B2D1C7EA00300BC7773 /* Info.plist */,
@@ -77,6 +97,50 @@
 				ACB60B1D1C7EA00200BC7773 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACB60B431C7EDB7800BC7773 /* GridList */ = {
+			isa = PBXGroup;
+			children = (
+				ACB60B221C7EA00200BC7773 /* AAAViewControllerGridList.h */,
+				ACB60B231C7EA00200BC7773 /* AAAViewControllerGridList.m */,
+				ACB60B331C7EBB1B00BC7773 /* AAAGridFlowLayout.h */,
+				ACB60B341C7EBB1B00BC7773 /* AAAGridFlowLayout.m */,
+				ACB60B361C7EBB2C00BC7773 /* AAAListFlowLayout.h */,
+				ACB60B371C7EBB2C00BC7773 /* AAAListFlowLayout.m */,
+			);
+			path = GridList;
+			sourceTree = "<group>";
+		};
+		ACB60B441C8011BC00BC7773 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACB60B3D1C7ED35600BC7773 /* CollectionViewGridCell.h */,
+				ACB60B3E1C7ED35600BC7773 /* CollectionViewGridCell.m */,
+				ACB60B401C7ED36200BC7773 /* CollectionViewListCell.h */,
+				ACB60B411C7ED36200BC7773 /* CollectionViewListCell.m */,
+				ACB60B391C7ED1C800BC7773 /* CollectionViewGridCell.xib */,
+				ACB60B3B1C7ED1D900BC7773 /* CollectionViewListCell.xib */,
+			);
+			name = View;
+			path = Shared/Views;
+			sourceTree = "<group>";
+		};
+		ACB60B451C8014B500BC7773 /* SupplementaryViews */ = {
+			isa = PBXGroup;
+			children = (
+				ACB60B461C8016F800BC7773 /* AABViewControllerSupplementaryView.h */,
+				ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */,
+			);
+			name = SupplementaryViews;
+			sourceTree = "<group>";
+		};
+		ACB60B491C828E3F00BC7773 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				ACB60B441C8011BC00BC7773 /* View */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,9 +200,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB60B3A1C7ED1C800BC7773 /* CollectionViewGridCell.xib in Resources */,
 				ACB60B2C1C7EA00300BC7773 /* LaunchScreen.storyboard in Resources */,
 				ACB60B291C7EA00300BC7773 /* Assets.xcassets in Resources */,
 				ACB60B271C7EA00200BC7773 /* Main.storyboard in Resources */,
+				ACB60B3C1C7ED1D900BC7773 /* CollectionViewListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +215,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACB60B241C7EA00200BC7773 /* ViewController.m in Sources */,
+				ACB60B3F1C7ED35600BC7773 /* CollectionViewGridCell.m in Sources */,
+				ACB60B241C7EA00200BC7773 /* AAAViewControllerGridList.m in Sources */,
+				ACB60B351C7EBB1B00BC7773 /* AAAGridFlowLayout.m in Sources */,
+				ACB60B421C7ED36200BC7773 /* CollectionViewListCell.m in Sources */,
 				ACB60B211C7EA00200BC7773 /* AppDelegate.m in Sources */,
 				ACB60B1E1C7EA00200BC7773 /* main.m in Sources */,
+				ACB60B481C8016F800BC7773 /* AABViewControllerSupplementaryView.m in Sources */,
+				ACB60B381C7EBB2C00BC7773 /* AAAListFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +371,7 @@
 				ACB60B321C7EA00300BC7773 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
