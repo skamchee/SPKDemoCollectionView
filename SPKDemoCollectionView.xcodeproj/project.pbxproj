@@ -20,6 +20,8 @@
 		ACB60B3F1C7ED35600BC7773 /* CollectionViewGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B3E1C7ED35600BC7773 /* CollectionViewGridCell.m */; };
 		ACB60B421C7ED36200BC7773 /* CollectionViewListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B411C7ED36200BC7773 /* CollectionViewListCell.m */; };
 		ACB60B481C8016F800BC7773 /* AABViewControllerSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */; };
+		ACB60B4C1C82948F00BC7773 /* AAAGridList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B4A1C82948F00BC7773 /* AAAGridList.storyboard */; };
+		ACB60B4F1C8294E500BC7773 /* AABSupplementaryViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B4D1C8294E500BC7773 /* AABSupplementaryViews.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		ACB60B411C7ED36200BC7773 /* CollectionViewListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewListCell.m; sourceTree = "<group>"; };
 		ACB60B461C8016F800BC7773 /* AABViewControllerSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AABViewControllerSupplementaryView.h; path = SupplementaryViews/AABViewControllerSupplementaryView.h; sourceTree = "<group>"; };
 		ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AABViewControllerSupplementaryView.m; path = SupplementaryViews/AABViewControllerSupplementaryView.m; sourceTree = "<group>"; };
+		ACB60B4B1C82948F00BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AAAGridList.storyboard; sourceTree = "<group>"; };
+		ACB60B4E1C8294E500BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AABSupplementaryViews.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 				ACB60B341C7EBB1B00BC7773 /* AAAGridFlowLayout.m */,
 				ACB60B361C7EBB2C00BC7773 /* AAAListFlowLayout.h */,
 				ACB60B371C7EBB2C00BC7773 /* AAAListFlowLayout.m */,
+				ACB60B4A1C82948F00BC7773 /* AAAGridList.storyboard */,
 			);
 			path = GridList;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				ACB60B461C8016F800BC7773 /* AABViewControllerSupplementaryView.h */,
 				ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */,
+				ACB60B4D1C8294E500BC7773 /* AABSupplementaryViews.storyboard */,
 			);
 			name = SupplementaryViews;
 			sourceTree = "<group>";
@@ -200,11 +206,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB60B4C1C82948F00BC7773 /* AAAGridList.storyboard in Resources */,
 				ACB60B3A1C7ED1C800BC7773 /* CollectionViewGridCell.xib in Resources */,
 				ACB60B2C1C7EA00300BC7773 /* LaunchScreen.storyboard in Resources */,
 				ACB60B291C7EA00300BC7773 /* Assets.xcassets in Resources */,
 				ACB60B271C7EA00200BC7773 /* Main.storyboard in Resources */,
 				ACB60B3C1C7ED1D900BC7773 /* CollectionViewListCell.xib in Resources */,
+				ACB60B4F1C8294E500BC7773 /* AABSupplementaryViews.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +251,23 @@
 				ACB60B2B1C7EA00300BC7773 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ACB60B4A1C82948F00BC7773 /* AAAGridList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACB60B4B1C82948F00BC7773 /* Base */,
+			);
+			name = AAAGridList.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ACB60B4D1C8294E500BC7773 /* AABSupplementaryViews.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACB60B4E1C8294E500BC7773 /* Base */,
+			);
+			name = AABSupplementaryViews.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2qb-df-Ui7">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller Supplementary View-->
+        <scene sceneID="r2t-ei-QHm">
+            <objects>
+                <viewController id="2qb-df-Ui7" customClass="AABViewControllerSupplementaryView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aXx-iq-cK7"/>
+                        <viewControllerLayoutGuide type="bottom" id="4jd-w9-IsQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7nl-Pc-5da">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ta3-Qz-LTB">
+                                <rect key="frame" x="20" y="64" width="560" height="536"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="idZ-7s-vrv">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aaw-JG-wKc">
+                                        <rect key="frame" x="0.0" y="114" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.77605267126101518" green="0.86947718505432436" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reusableHeader" id="B6f-eA-h7t">
+                                    <rect key="frame" x="0.0" y="64" width="560" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" red="0.84665118061538236" green="1" blue="0.63097589887487548" alpha="1" colorSpace="calibratedRGB"/>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reusableFooter" id="Hhf-o4-Q9c">
+                                    <rect key="frame" x="0.0" y="164" width="560" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" red="1" green="0.52535967844260623" blue="0.67437385945376138" alpha="1" colorSpace="calibratedRGB"/>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ta3-Qz-LTB" firstAttribute="top" secondItem="aXx-iq-cK7" secondAttribute="bottom" id="FyS-Z1-vqW"/>
+                            <constraint firstItem="4jd-w9-IsQ" firstAttribute="top" secondItem="Ta3-Qz-LTB" secondAttribute="bottom" id="gTV-1Q-3n3"/>
+                            <constraint firstItem="Ta3-Qz-LTB" firstAttribute="leading" secondItem="7nl-Pc-5da" secondAttribute="leadingMargin" id="kJW-1p-zIf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ta3-Qz-LTB" secondAttribute="trailing" id="zxb-vw-UrV"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Ta3-Qz-LTB" id="lpT-Vf-Ye7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smK-bg-BZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416" y="1915"/>
+        </scene>
+    </scenes>
+</document>
