@@ -102,4 +102,31 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     return newCell;
 }
 
+#pragma mark - Model 
+
+-(AAAModelItem*)modelAtIndexPath:(NSIndexPath*)indexPath{
+    return [self.modelArray objectAtIndex:indexPath.item];
+}
+
+-(void)populateModelObject{
+    NSString* sentence = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in ";
+    NSArray* wordsArray = [sentence componentsSeparatedByString:@" "];
+    NSMutableArray<AAAModelItem*>* modelArray= [[NSMutableArray alloc]init];
+    for(int i=0; i<20; i++){
+        AAAModelItem* modelItem = [[AAAModelItem alloc]init];
+        modelItem.title = [NSString stringWithFormat:@"Item %d",i];
+
+        NSMutableString * result = [[NSMutableString alloc] init];
+        for (int j=0;j<i+1;j++)
+        {
+            [result appendString:[wordsArray objectAtIndex:j]];
+            [result appendString:@" "];
+        }
+        NSLog(@"The concatenated string is %@", result);
+        
+        modelItem.detailText = result;
+        [modelArray addObject:modelItem];
+    }
+    self.modelArray = modelArray;
+}
 @end

@@ -22,6 +22,7 @@
 		ACB60B481C8016F800BC7773 /* AABViewControllerSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */; };
 		ACB60B4C1C82948F00BC7773 /* AAAGridList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B4A1C82948F00BC7773 /* AAAGridList.storyboard */; };
 		ACB60B4F1C8294E500BC7773 /* AABSupplementaryViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACB60B4D1C8294E500BC7773 /* AABSupplementaryViews.storyboard */; };
+		DB0CAD541C8393B7000C5DCB /* AAAModelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0CAD531C8393B7000C5DCB /* AAAModelItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		ACB60B471C8016F800BC7773 /* AABViewControllerSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AABViewControllerSupplementaryView.m; path = SupplementaryViews/AABViewControllerSupplementaryView.m; sourceTree = "<group>"; };
 		ACB60B4B1C82948F00BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AAAGridList.storyboard; sourceTree = "<group>"; };
 		ACB60B4E1C8294E500BC7773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AABSupplementaryViews.storyboard; sourceTree = "<group>"; };
+		DB0CAD521C8393B7000C5DCB /* AAAModelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAModelItem.h; sourceTree = "<group>"; };
+		DB0CAD531C8393B7000C5DCB /* AAAModelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAModelItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 				ACB60B361C7EBB2C00BC7773 /* AAAListFlowLayout.h */,
 				ACB60B371C7EBB2C00BC7773 /* AAAListFlowLayout.m */,
 				ACB60B4A1C82948F00BC7773 /* AAAGridList.storyboard */,
+				DB0CAD521C8393B7000C5DCB /* AAAModelItem.h */,
+				DB0CAD531C8393B7000C5DCB /* AAAModelItem.m */,
 			);
 			path = GridList;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				ACB60B421C7ED36200BC7773 /* CollectionViewListCell.m in Sources */,
 				ACB60B211C7EA00200BC7773 /* AppDelegate.m in Sources */,
 				ACB60B1E1C7EA00200BC7773 /* main.m in Sources */,
+				DB0CAD541C8393B7000C5DCB /* AAAModelItem.m in Sources */,
 				ACB60B481C8016F800BC7773 /* AABViewControllerSupplementaryView.m in Sources */,
 				ACB60B381C7EBB2C00BC7773 /* AAAListFlowLayout.m in Sources */,
 			);
