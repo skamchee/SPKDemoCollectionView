@@ -73,6 +73,18 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     [self.collectionView setCollectionViewLayout:self.selectedLayout animated:NO];
 }
 
+//Unfortunately, this method appears to be called before cellForItemAtIndexPath
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    if([collectionViewLayout isKindOfClass:[AAAListFlowLayout class]]){
+//        if([self.cellTemplate isKindOfClass:[CollectionViewListCell class]]){
+//            CGSize size = [self.cellTemplate intrinsicContentSize];
+//            return size;
+//        }
+//    }
+//    return [(UICollectionViewFlowLayout*)collectionViewLayout itemSize];
+//
+//
+//}
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -94,6 +106,10 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
         CollectionViewListCell* listCell = (CollectionViewListCell*)cell;
         listCell.titleLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] title];
         listCell.detailLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] detailText];
+        //set the width so multi-line label doesn't shrink when auto layout redraws it
+        //TODO: THIS IS CHANGED WHEN CHANGING SIZE OF COLLECTION VIEW
+        listCell.titleLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width/4-10;
+        listCell.detailLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width/4-10;
         return listCell;
     }
 }
@@ -113,6 +129,13 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     newCell = [self configureCell:newCell forIndexPath:indexPath];
     
     return newCell;
+}
+
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    UICollectionViewCell* newCell;
+        newCell = [self configureCell:newCell forIndexPath:indexPath];
+    return [newCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 }
 
 #pragma mark - Model 
