@@ -32,8 +32,10 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.selectedLayout = AAACollectionViewLayoutSelectedGrid;
+    [self populateModelObject];
+    [self gridButtonTapped:nil];
     self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
 
     UINib* gridNib = [UINib nibWithNibName:@"CollectionViewGridCell" bundle:nil];
     [self.collectionView registerNib:gridNib forCellWithReuseIdentifier:gridCellReuseID];
@@ -78,26 +80,37 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if(section == AAACollectionViewGridListSectionFirst){
-        return 10;
+        return [[self modelArray]count];
     }
     return 0;
 }
+
+-(UICollectionViewCell*)configureCell:(UICollectionViewCell*)cell forIndexPath:(NSIndexPath*)indexPath{
+    if([self.selectedLayout isKindOfClass:[AAAGridFlowLayout class]]){
+        CollectionViewGridCell* gridCell = (CollectionViewGridCell*)cell;
+        gridCell.titleLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] title];
+        return gridCell;
+    }else{
+        CollectionViewListCell* listCell = (CollectionViewListCell*)cell;
+        listCell.titleLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] title];
+        listCell.detailLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] detailText];
+        return listCell;
+    }
+}
+
+
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell* newCell;
     if([self.selectedLayout isKindOfClass:[AAAGridFlowLayout class]]){
         newCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:gridCellReuseID forIndexPath:indexPath];
-        CollectionViewGridCell* gridCell = (CollectionViewGridCell*)newCell;
-        gridCell.titleLabel.text = [NSString stringWithFormat:@"Item %ld",(long)indexPath.item];
+        
     }else{
         newCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:listCellReuseID forIndexPath:indexPath];
-        CollectionViewListCell* listCell = (CollectionViewListCell*)newCell;
-        listCell.titleLabel.text = [NSString stringWithFormat:@"Item %ld",(long)indexPath.item];
-        listCell.detailLabel.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
     }
     
-    self.cellTemplate = newCell;
+    newCell = [self configureCell:newCell forIndexPath:indexPath];
     
     return newCell;
 }
