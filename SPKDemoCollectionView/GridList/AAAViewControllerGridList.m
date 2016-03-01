@@ -74,17 +74,54 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 }
 
 //Unfortunately, this method appears to be called before cellForItemAtIndexPath
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if([collectionViewLayout isKindOfClass:[AAAListFlowLayout class]]){
-//        if([self.cellTemplate isKindOfClass:[CollectionViewListCell class]]){
-//            CGSize size = [self.cellTemplate intrinsicContentSize];
-//            return size;
-//        }
-//    }
-//    return [(UICollectionViewFlowLayout*)collectionViewLayout itemSize];
-//
-//
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    AAAViewControllerGridList* dataSource = (AAAViewControllerGridList*)self.collectionView.dataSource;
+    AAAModelItem* item = [dataSource modelAtIndexPath:indexPath];
+    
+    CGRect bounds = CGRectMake(0,0,self.collectionView.bounds.size.width,self.collectionView.bounds.size.height);
+    CGRect titleRect;
+    CGRect detailRect;
+    
+    if([collectionViewLayout isKindOfClass:[AAAGridFlowLayout class]]){
+        CGFloat fontSize = 18.0;
+        titleRect = [item.title boundingRectWithSize:CGSizeMake(bounds.size.width/4, MAXFLOAT)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
+                                             context:nil];
+
+        titleRect.size.width = bounds.size.width/4;
+        titleRect.size.height += 10;
+    }else if([collectionViewLayout isKindOfClass:[AAAListFlowLayout class]]){
+        CGFloat fontSize = 18.0;
+        titleRect = [item.title boundingRectWithSize:CGSizeMake(bounds.size.width-10, MAXFLOAT)
+                                 options:NSStringDrawingUsesLineFragmentOrigin
+                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
+                                 context:nil];
+        fontSize = 12.0;
+        detailRect = [item.detailText boundingRectWithSize:CGSizeMake(bounds.size.width-10, MAXFLOAT)
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
+                                                          context:nil];
+        
+        titleRect.size.width = bounds.size.width;
+        titleRect.size.height += detailRect.size.height;
+        
+        //margins
+        titleRect.size.height += 15;
+    }
+    
+    return titleRect.size;
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                               duration:(NSTimeInterval)duration{
+    
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    
+    //gets configure cell to run again in order to set the correct preferredmaxlayoutwidth on the labels
+    [self.collectionView reloadData];
+}
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -101,6 +138,8 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     if([self.selectedLayout isKindOfClass:[AAAGridFlowLayout class]]){
         CollectionViewGridCell* gridCell = (CollectionViewGridCell*)cell;
         gridCell.titleLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] title];
+        gridCell.titleLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width/4-10;
+
         return gridCell;
     }else{
         CollectionViewListCell* listCell = (CollectionViewListCell*)cell;
@@ -108,8 +147,8 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
         listCell.detailLabel.text = [(AAAModelItem*)[[self modelArray]objectAtIndex:indexPath.item] detailText];
         //set the width so multi-line label doesn't shrink when auto layout redraws it
         //TODO: THIS IS CHANGED WHEN CHANGING SIZE OF COLLECTION VIEW
-        listCell.titleLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width/4-10;
-        listCell.detailLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width/4-10;
+        listCell.titleLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width-10;
+        listCell.detailLabel.preferredMaxLayoutWidth = self.collectionView.bounds.size.width-10;
         return listCell;
     }
 }
@@ -132,11 +171,11 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 }
 
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    UICollectionViewCell* newCell;
-        newCell = [self configureCell:newCell forIndexPath:indexPath];
-    return [newCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-}
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
+//    UICollectionViewCell* newCell;
+//        newCell = [self configureCell:newCell forIndexPath:indexPath];
+//    return [newCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+//}
 
 #pragma mark - Model 
 
@@ -147,17 +186,15 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 -(void)populateModelObject{
     NSString* sentence = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in ";
     NSArray* wordsArray = [sentence componentsSeparatedByString:@" "];
+    
+    NSMutableString * result = [[NSMutableString alloc] init];
     NSMutableArray<AAAModelItem*>* modelArray= [[NSMutableArray alloc]init];
     for(int i=0; i<20; i++){
         AAAModelItem* modelItem = [[AAAModelItem alloc]init];
         modelItem.title = [NSString stringWithFormat:@"Item %d",i];
 
-        NSMutableString * result = [[NSMutableString alloc] init];
-        for (int j=0;j<i+1;j++)
-        {
-            [result appendString:[wordsArray objectAtIndex:j]];
+            [result appendString:[wordsArray objectAtIndex:i]];
             [result appendString:@" "];
-        }
         NSLog(@"The concatenated string is %@", result);
         
         modelItem.detailText = result;
