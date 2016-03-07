@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AAAModelItem.h"
 
-@interface AAAViewControllerGridList : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface AAAViewControllerGridList : UIViewController <UICollectionViewDataSource>
 
 -(AAAModelItem*)modelAtIndexPath:(NSIndexPath*)indexPath;
 @property (strong,nonatomic)NSMutableArray<AAAModelItem*>* modelArray;

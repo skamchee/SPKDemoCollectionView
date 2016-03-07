@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *gridButton;
 @property (weak, nonatomic) IBOutlet UIButton *listButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong,nonatomic)UICollectionViewLayout* selectedLayout;
+@property (strong,nonatomic)UICollectionViewFlowLayout<UICollectionViewDelegateFlowLayout>* selectedLayout;
 @end
 
 #define gridCellReuseID @"gridCollectionViewCell"
@@ -35,7 +35,6 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     [self populateModelObject];
     [self gridButtonTapped:nil];
     self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
 
     UINib* gridNib = [UINib nibWithNibName:@"CollectionViewGridCell" bundle:nil];
     [self.collectionView registerNib:gridNib forCellWithReuseIdentifier:gridCellReuseID];
@@ -48,17 +47,19 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     //We do this to make it easy to change the margins
-    self.view.layoutMargins = UIEdgeInsetsMake(0,0,0,0);
+    self.view.layoutMargins = UIEdgeInsetsMake(5,5,5,5);
 }
 
 - (IBAction)gridButtonTapped:(UIButton *)sender {
     self.selectedLayout = [[AAAGridFlowLayout alloc]init];
+    self.collectionView.delegate = self.selectedLayout;
     [self selectLayout];
     [self.collectionView reloadData];
     
 }
 - (IBAction)listButtonTapped:(UIButton *)sender {
-    self.selectedLayout = [[AAAListFlowLayout alloc]init];;
+    self.selectedLayout = [[AAAListFlowLayout alloc]init];
+    self.collectionView.delegate = self.selectedLayout;
     [self selectLayout];
     [self.collectionView reloadData];
 }
@@ -71,47 +72,6 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     //      [self.collectionView setCollectionViewLayout:[[AAAGridFlowLayout alloc]init] animated:YES];
     //    }];
     [self.collectionView setCollectionViewLayout:self.selectedLayout animated:NO];
-}
-
-//Unfortunately, this method appears to be called before cellForItemAtIndexPath
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    AAAViewControllerGridList* dataSource = (AAAViewControllerGridList*)self.collectionView.dataSource;
-    AAAModelItem* item = [dataSource modelAtIndexPath:indexPath];
-    
-    CGRect bounds = CGRectMake(0,0,self.collectionView.bounds.size.width,self.collectionView.bounds.size.height);
-    CGRect titleRect;
-    CGRect detailRect;
-    
-    if([collectionViewLayout isKindOfClass:[AAAGridFlowLayout class]]){
-        CGFloat fontSize = 18.0;
-        titleRect = [item.title boundingRectWithSize:CGSizeMake(bounds.size.width/4, MAXFLOAT)
-                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                          attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
-                                             context:nil];
-
-        titleRect.size.width = bounds.size.width/4;
-        titleRect.size.height += 10;
-    }else if([collectionViewLayout isKindOfClass:[AAAListFlowLayout class]]){
-        CGFloat fontSize = 18.0;
-        titleRect = [item.title boundingRectWithSize:CGSizeMake(bounds.size.width-10, MAXFLOAT)
-                                 options:NSStringDrawingUsesLineFragmentOrigin
-                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
-                                 context:nil];
-        fontSize = 12.0;
-        detailRect = [item.detailText boundingRectWithSize:CGSizeMake(bounds.size.width-10, MAXFLOAT)
-                                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                                       attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
-                                                          context:nil];
-        
-        titleRect.size.width = bounds.size.width;
-        titleRect.size.height += detailRect.size.height;
-        
-        //margins
-        titleRect.size.height += 15;
-    }
-    
-    return titleRect.size;
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -153,8 +113,6 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     }
 }
 
-
-
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell* newCell;
@@ -169,13 +127,6 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
     
     return newCell;
 }
-
-
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-//    UICollectionViewCell* newCell;
-//        newCell = [self configureCell:newCell forIndexPath:indexPath];
-//    return [newCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-//}
 
 #pragma mark - Model 
 
