@@ -135,17 +135,21 @@ typedef NS_ENUM(NSInteger, AAACollectionViewGridListSection){
 }
 
 -(void)populateModelObject{
-    NSString* sentence = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in ";
+    NSString* sentence = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
     NSArray* wordsArray = [sentence componentsSeparatedByString:@" "];
     
     NSMutableString * result = [[NSMutableString alloc] init];
     NSMutableArray<AAAModelItem*>* modelArray= [[NSMutableArray alloc]init];
-    for(int i=0; i<20; i++){
+    for(int i=0; i<100; i++){
         AAAModelItem* modelItem = [[AAAModelItem alloc]init];
-        modelItem.title = [NSString stringWithFormat:@"Item %d",i];
+        modelItem.title = [NSString stringWithFormat:@"Lorem Ipsum %d",i];
 
-            [result appendString:[wordsArray objectAtIndex:i]];
-            [result appendString:@" "];
+        if(i>=[wordsArray count]){
+            [result appendString:[wordsArray objectAtIndex:[wordsArray count]-1]];
+        }else{
+             [result appendString:[wordsArray objectAtIndex:i]];
+        }
+        [result appendString:@" "];
         NSLog(@"The concatenated string is %@", result);
         
         modelItem.detailText = result;
