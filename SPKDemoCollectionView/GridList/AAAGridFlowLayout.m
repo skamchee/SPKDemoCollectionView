@@ -11,48 +11,27 @@
 
 @implementation AAAGridFlowLayout
 
-
--(CGFloat)itemHeight{
-    return 50;
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    AAAViewControllerGridList* dataSource = (AAAViewControllerGridList*)self.collectionView.dataSource;
+    AAAModelItem* item = [dataSource modelAtIndexPath:indexPath];
+    
+    CGRect bounds = CGRectMake(0,0,self.collectionView.bounds.size.width,self.collectionView.bounds.size.height);
+    CGRect titleRect;
+    
+    CGFloat fontSize = 18.0;
+    titleRect = [item.title boundingRectWithSize:CGSizeMake(bounds.size.width/4, MAXFLOAT)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}
+                                         context:nil];
+    
+    titleRect.size.width = bounds.size.width/4;
+    
+    //margins
+    titleRect.size.height += 10;
+    return titleRect.size;
 }
 
--(CGFloat)itemWidth{
-   return (CGRectGetWidth(self.collectionView.frame)/4)-1;
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 0.0;
 }
-
-//This size is used if the collection view does not implement collectionView:layout:sizeForItemAtIndexPath:
--(CGSize)itemSize{
-    return CGSizeMake([self itemWidth],[self itemHeight]);
-}
-
--(void)setItemSize{
-    self.itemSize = CGSizeMake([self itemWidth],[self itemHeight]);
-}
-
--(CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset{
-    return self.collectionView.contentOffset;
-}
-
-
-//- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
-//{
-//    NSMutableArray *layoutAttributes = [NSMutableArray array];
-//    UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-//    [layoutAttributes addObject:attributes];
-//    return layoutAttributes;
-//}
-//
-////Logic for how to layout the cells
-//-(UICollectionViewLayoutAttributes*)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    AAAViewControllerGridList* dataSource = (AAAViewControllerGridList*)self.collectionView.dataSource;
-//    AAAModelItem* event = [dataSource modelAtIndexPath:indexPath];
-//    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-//    attributes.frame = [self frameForEvent:event];
-//    return attributes;
-//}
-//
-//-(CGRect)frameForEvent:(AAAModelItem*)item{
-//    CGRect titleSize = CGRectMake(0, 0, 100, 100);
-//    return titleSize;
-//}
 @end

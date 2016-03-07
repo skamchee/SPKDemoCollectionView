@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AAAGridFlowLayout : UICollectionViewFlowLayout
+@interface AAAGridFlowLayout : UICollectionViewFlowLayout<UICollectionViewDelegateFlowLayout>
 
 @end
